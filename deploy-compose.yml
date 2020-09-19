@@ -1,0 +1,14 @@
+version: '3.1'
+
+services:
+  flyway:
+    image: ${IMAGE_FLYWAY}
+    command: ["migrate"]
+    volumes:
+    - "./${SQL_PATH}:/flyway/sql"
+    environment:
+      FLYWAY_DRIVER: com.mysql.cj.jdbc.Driver
+      FLYWAY_URL: ${DB_URL}
+      FLYWAY_USER: ${DB_USER}
+      FLYWAY_PASSWORD: ${DB_PASSWORD}
+      FLYWAY_CONNECT_RETRIES: 1
